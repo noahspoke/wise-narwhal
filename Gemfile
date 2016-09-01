@@ -7,6 +7,7 @@ gem 'thin'
 gem 'activerecord'
 gem 'sinatra-activerecord'
 gem 'rake'
+gem 'bcrypt'
 
 #Tells your Mac to use sqlite locally during development
 group :development do
