@@ -1,0 +1,6 @@
+<title><%= params[:page_name] %></title>
+
+<% @things.each do |thing| %>
+	<% structure = element_type(thing.group_name) %>
+	<%= erb :"#{structure}", :layout => false, :locals => {:desc => thing.description} %>
+<% end %>

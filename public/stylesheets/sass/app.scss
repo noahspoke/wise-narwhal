@@ -1,9 +1,95 @@
+$black: #1b1b1b;
+$white: #fff;
+
+body, html {
+	margin:0;
+	padding:0;
+}
+
+@font-face {
+	font-family: "KeepCalm";
+	src: url("/fonts/KeepCalm-Medium.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: "Oran";
+	src: url("/fonts/Oranienbaum.ttf") format("truetype");
+}
+
+h1, button, a {
+	font-family: "KeepCalm";
+	font-size: 1em;
+}
+
+p, input, strong {
+	font-family: "Oran";
+	font-size: 1em;
+}
+
+h1 {
+	margin: 1em;
+	font-size: 2em;
+}
+
+h3 {
+	/* Special header for design purpose not included in set */
+	font-family: "Oran";
+	font-size: 2em;
+	font-weight: normal;
+	margin: 1em;
+}
+
+button {
+	border:none;
+	background-color:$black;
+	color:$white;
+	padding:8px;
+
+	&:hover {
+		cursor: pointer;
+	}
+}
+
+input {
+	margin: 1em;
+	border:none;
+	font-size:1em;
+	border: 1px solid $black;
+	padding:16px;
+
+	&:focus {
+		outline:none;
+	}
+}
+
 section.main {
 	
 }
 
 section.admin {
-	strong {
+
+	.new-content {
+		margin: 0 3em;
+	}
+
+	.page-content {
+		display: none;
+	}
+
+	.thing-form {
+
+		.thing-example {
+			margin: 1em 0;
+		}
+	}
+
+	h1 {
+		&:hover {
+			cursor: pointer;
+		}
+	}
+
+	strong, p, h1, img, a {
 		display:block;
 	}
 }

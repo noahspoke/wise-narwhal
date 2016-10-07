@@ -1,36 +1,40 @@
 <section class="admin">
-	<% @pages.each do |page| %>
-		<h1><%= page.name %></h1>
 
-		<% Thing.where("name = ?", page.name).each do |thing| %>
-			<form action='<%= url("/thing/#{thing.id}") %>' id="<%= thing.id %>-form" method="POST" enctype="multipart/form-data" onsubmit="return false;">
-				<input type="text" value="<%= thing.description %>" name="description" required>
-				<button id="<%= thing.id %>-button" class="thing-button" data-id="<%= thing.id %>">Update!</button>
-			</form>
-		<% end %>
-		<section class="new_content">
-			<strong id="new_thing">New Thing</strong>
-			<form action='<%= url("/page/thing") %>' method="POST" enctype="multipart/form-data" onsubmit="return false;" id="thing-form">
-				<input type="text" name="desc" placeholder="thing text">
-				<input type="hidden" name="type" value="h1">
+	<h3>These are your <p style="display:inline; font-family:'Keep Calm';">pages.</p> Here is where you edit and add.</h3>
+
+	<% @pages.each do |page| %>
+		<h1 class="page-heading" data-id="<%= page.id %>"><%= page.name %></h1>
+
+		<section class="new-content page-content" id="<%= page.id %>-content">
+			<% Thing.where("name = ?", page.name).each do |thing| %>
+				<form action='<%= url("/thing/#{thing.id}") %>' id="<%= thing.id %>-form" method="POST" enctype="multipart/form-data" onsubmit="return false;">
+					<input type="text" value="<%= thing.description %>" name="description" autocomplete="off" required>
+					<button id="<%= thing.id %>-button" class="thing-button" data-id="<%= thing.id %>">Update</button>
+				</form>
+			<% end %>
+
+			<form action='<%= url("/page/thing") %>' method="POST" enctype="multipart/form-data" onsubmit="return false;" id="<%= page.id %>-thing-form" class="thing-form">
+				<input type="hidden" name="type" id="<%= page.id %>-hidden" value="h1">
 				<input type="hidden" name="name" value="<%= page.name %>">
-				<button class="thing-button" data-id="thing">Create!</button>
+				<input type="text" class="thing-input" data-id="<%= page.id %>" name="desc" placeholder="thing text" autocomplete="off">
+				<button class="thing-button" data-id="<%= page.id %>-thing">Create</button>
+				<h1 class="thing-example" id="<%= page.id %>-p" data-number="0">Header</h1>
 			</form>
 		</section>
 	<% end %>
 
-	<section class="new_content">
-		<strong id="new_page">New Page</strong>
+	<h1>Other stuff.</h1>
+
+	<section class="new-content">
 		<form action='<%= url("/page") %>' method="POST" enctype="multipart/form-data" onsubmit="return false;" id="page-form">
-			<input type="text" name="name" placeholder="page name">
-			<button class="thing-button" data-id="page">Create!</button>
+			<input type="text" name="name" placeholder="page name" autocomplete="off">
+			<button class="thing-button" data-id="page">Create</button>
 		</form>
 
-		<strong id="new_user">New User</strong>
 		<form action='<%= url("/user") %>' method="POST" enctype="multipart/form-data" onsubmit="return false;" id="user-form">
-			<input type="text" name="name" placeholder="name">
+			<input type="text" name="name" placeholder="name" autocomplete="off">
 			<input type="password" name="password" placeholder="password">
-			<button class="thing-button" data-id="user">Create!</button>
+			<button class="thing-button" data-id="user">Create</button>
 		</form>
 	</section>
 </section>

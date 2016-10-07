@@ -18,6 +18,23 @@ end
 class Thing < ActiveRecord::Base
 end
 
+enable :sessions
+
+helpers do
+	def element_type(type)
+		element = case type
+			when "h1" then "_h1"
+			when "a" then "_a"
+			when "p" then "_p"
+			when "strong" then "_strong"
+			when "img" then "_img"
+			else false
+		end
+
+		return element
+	end
+end
+
 get '/' do
 	erb :index
 end
@@ -27,7 +44,8 @@ get '/admin' do
 end
 
 post '/admin' do
-	if user = User.find(name: params[:name]).authenticate(params[:password])
+	user = User.find_by(name: params[:name])
+	if user.authenticate(params[:password])
 		session[:user_id] = user.id
 		redirect '/dashboard'
 	else
@@ -45,7 +63,10 @@ get '/dashboard' do
 end
 
 post '/page' do
-	page = Page.create(name: params[:name])
+	page_name = params[:name]
+	underscored = page_name.split.join('_')
+
+	page = Page.create(name: underscored)
 	status 200
 	body ''
 end
@@ -67,6 +88,12 @@ post '/thing/:thing_id' do
 	thing.update_attribute :description, params[:description] if params[:description]
 	status 200
 	body ''
+end
+
+get '/:page_name' do
+	@page = Page.find_by(name: params[:page_name])
+	@things = Thing.where("name = ?", params[:page_name]).order(:id)
+	erb :page
 end
 
 after do
