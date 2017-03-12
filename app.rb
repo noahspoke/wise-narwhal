@@ -3,7 +3,7 @@ require 'sass/plugin/rack'
 require 'bundler/setup'
 require 'sinatra/reloader' if development?
 require 'sinatra/activerecord'
-require './db-config'
+require './config/enviroments'
 
 Sass::Plugin.options[:style] = :compressed
 use Sass::Plugin::Rack

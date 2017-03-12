@@ -1,0 +1,19 @@
+defaults: &defaults
+  adapter: postgresql
+  host: <%= ENV["PG_HOST"] %>
+  pool: 25
+  timeout: 5000
+  username: <%= ENV["PG_USERNAME"] %>
+  password: <%= ENV["PG_PASSWORD"] %>
+
+development:
+  <<: *defaults
+  database: gmerek_development
+
+test:
+  <<: *defaults
+  database: gmerek_test
+
+production:
+  <<: *defaults
+  database: <%= ENV["PG_NAME"] %>
