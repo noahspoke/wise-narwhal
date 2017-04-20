@@ -1,5 +1,6 @@
 $black: #1b1b1b;
 $white: #fff;
+$light-black: lighten($black, 30%);
 
 body, html {
 	margin:0;
@@ -16,6 +17,40 @@ body, html {
 	src: url("/fonts/Oranienbaum.ttf") format("truetype");
 }
 
+@font-face {
+	font-family: "Bio";
+	src: url("/fonts/LinBiolinum_R.woff") format("woff");
+}
+
+@font-face {
+	font-family: "Bio";
+	font-weight: 700;
+	src: url("/fonts/LinBiolinum_RB.woff") format("woff");
+}
+
+@font-face {
+	font-family: "Bio";
+	font-style: italic;
+	src: url("/fonts/LinBiolinum_RI.woff") format("woff");
+}
+
+@font-face {
+	font-family: "Lib";
+	src: url("/fonts/LinLibertine_R.woff") format("woff");
+}
+
+@font-face {
+	font-family: "Lib";
+	font-weight: 700;
+	src: url("/fonts/LinLibertine_RBI.woff") format("woff");
+}
+
+@font-face {
+	font-family: "Lib";
+	font-style: italic;
+	src: url("/fonts/LinLibertine_RI.woff") format("woff");
+}
+
 h1, button, a {
 	font-family: "KeepCalm";
 	font-size: 1em;
@@ -27,7 +62,7 @@ p, input, strong {
 }
 
 h1 {
-	margin: 1em;
+	/*margin: 1em;*/
 	font-size: 2em;
 }
 
@@ -62,8 +97,89 @@ input {
 	}
 }
 
+ul {
+	list-style-type: none;
+}
+
 section.main {
-	
+	.nav {
+		position: fixed;
+		width: 95%;
+		height: 100px;
+		top:0;
+		left: 50%;
+		margin: 0;
+		margin-left: -47.5%;
+		margin-top: 24px;
+		/*background-color: rgba($black, .2);*/
+		color: white;
+		font-family: "Bio";
+		padding:0;
+
+		img {
+			max-height: 100%;
+			max-width: 100%;
+			float:left;
+		}
+
+		.action {
+			border: 2px solid white;
+		}
+
+		li {
+			display:inline;
+			float: right;
+    		position: relative;
+    		top: 50%;
+    		transform: translateY(-50%);
+    		padding:16px 24px;
+    		margin: 0 16px;
+    		border-radius: 6px;
+    		transition: background-color 0.8s ease, border-color 0.8s ease;
+    		border: 2px solid transparent;
+
+    		&:hover {
+    			background-color:white;
+    			color: $black;
+    			cursor: pointer;
+    			border-color: white;
+    		}
+		}
+	}
+
+	.hero {
+		width: 100%;
+		height: 600px;
+		background-image: url("/images/big-hero.jpg");
+	}
+
+	h1 {
+		font-family: "Bio";
+	}
+
+	h2 {
+		font-family: "Lib";
+		font-style: italic;
+	}
+
+	h1, h2 {
+		margin:0;
+	}
+
+	.row {
+		color: $black;
+
+		.vertical {
+			position: relative;
+			top:50%;
+			transform: translateY(-50%);
+		}
+
+		.home-copy {
+			margin-left: 3%;
+			color: white;
+		}
+	}
 }
 
 section.admin {
