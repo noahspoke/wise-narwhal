@@ -3,10 +3,14 @@ require 'sass/plugin/rack'
 require 'bundler/setup'
 require 'sinatra/reloader' if development?
 require 'sinatra/activerecord'
-require './db-config'
+require './config/enviroments'
+require 'aws-sdk'
+require 'dotenv'
 
 Sass::Plugin.options[:style] = :compressed
 use Sass::Plugin::Rack
+
+Dotenv.load
 
 class User < ActiveRecord::Base
 	has_secure_password

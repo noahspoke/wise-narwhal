@@ -1,10 +1,5 @@
-configure :development do
-	set :database, 'sqlite3:///narwhal.db'
-	set :show_exceptions, true
-end
-
-configure :production do
-	db = URI.parse(ENV['DATABASE_URL'] || 'postgres:///localhost/mydb')
+configure :development, :production do
+	db = URI.parse(ENV['DATABASE_URL'] || 'postgres:///narwhal_development')
 
 	 ActiveRecord::Base.establish_connection(
 	   :adapter  => db.scheme == 'postgres' ? 'postgresql' : db.scheme,

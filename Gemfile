@@ -8,6 +8,8 @@ gem 'activerecord'
 gem 'sinatra-activerecord'
 gem 'rake'
 gem 'bcrypt'
+gem 'aws-sdk'
+gem 'dotenv'
 
 #Tells your Mac to use sqlite locally during development
 group :development do
