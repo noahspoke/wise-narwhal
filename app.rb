@@ -1,5 +1,4 @@
 require 'sinatra'
-require 'sass/plugin/rack'
 require 'bundler/setup'
 require 'sinatra/reloader' if development?
 require 'sinatra/activerecord'
@@ -7,19 +6,20 @@ require './config/enviroments'
 require 'aws-sdk'
 require 'dotenv'
 
-Sass::Plugin.options[:style] = :compressed
-use Sass::Plugin::Rack
-
 Dotenv.load
 
 class User < ActiveRecord::Base
 	has_secure_password
+
+	validates :name, presence: true
+	validates :password, presence: true, length: { in: 6..20 }
 end
 
 class Page < ActiveRecord::Base
 end 
 
 class Thing < ActiveRecord::Base
+	validates :text, presence: true
 end
 
 enable :sessions
@@ -36,6 +36,14 @@ helpers do
 		end
 
 		return element
+	end
+
+	def is_authed?
+		if session[:user_id]
+			return true
+		else
+			return false
+		end
 	end
 end
 
@@ -70,7 +78,7 @@ post '/page' do
 	page_name = params[:name]
 	underscored = page_name.split.join('_')
 
-	page = Page.create(name: underscored)
+	page = Page.create!(name: underscored)
 	status 200
 	body ''
 end

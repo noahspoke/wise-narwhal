@@ -1,25 +1,37 @@
 <section class="admin">
 
-	<h3>These are your <p style="display:inline; font-family:'Keep Calm';">pages.</p> Here is where you edit and add.</h3>
+	<h3>These are your <p style="display:inline; font-family: 'Lato', sans-serif; font-weight: 900;">pages.</p> Here is where you edit and add.</h3>
 
 	<% @pages.each do |page| %>
-		<h1 class="page-heading" data-id="<%= page.id %>"><%= page.name %> <i class="fa fa-caret-down" aria-hidden="true"></i></h1>
+		<h1 class="page-heading" data-id="<%= page.id %>"><%= page.name %> <i class="fa fa-plus" aria-hidden="true"></i></h1>
 
 		<section class="new-content page-content" id="<%= page.id %>-content">
+
+			<div class="action-wrapper">
+				<a class="action">
+					
+				</a>
+
+				<a class="action">
+					
+				</a>
+			</div>
+		
+
 			<% Thing.where("name = ?", page.name).each do |thing| %>
-				<form action='<%= url("/thing/#{thing.id}") %>' id="<%= thing.id %>-form" class="form-switch" method="POST" enctype="multipart/form-data" onsubmit="return false;">
-					<!--<input type="text" class="input-switch" value="<%= thing.description %>" name="description" autocomplete="off" required>-->
-					<textarea name="description" form="<%= thing.id %>-form" data-element="<%= thing.group_name %>"><%= thing.description %></textarea>
-					<button id="<%= thing.id %>-button" class="thing-button" data-id="<%= thing.id %>">Update</button>
+				<!--<form action='<%#= url("/thing/#{thing.id}") %>' id="<%= thing.id %>-form" class="form-switch" method="POST" enctype="multipart/form-data" onsubmit="return false;">
+					<input type="text" class="input-switch" value="<%= thing.description %>" name="description" autocomplete="off" required>
+					<textarea name="description" form="<%#= thing.id %>-form" data-element="<%#= thing.group_name %>"><%#= thing.description %></textarea>
+					<button id="<%#= thing.id %>-button" class="thing-button" data-id="<%#= thing.id %>">Update</button>
 					<i class="fa fa-caret-left element-switch" aria-hidden="true"></i><i class="fa fa-caret-right element-switch" aria-hidden="true"></i>
-				</form>
+				</form>-->
 			<% end %>
 
-			<form action='<%= url("/page/thing") %>' method="POST" enctype="multipart/form-data" onsubmit="return false;" id="<%= page.id %>-thing-form" class="thing-form form-switch">
-				<input type="hidden" name="type" id="<%= page.id %>-hidden" value="h1">
-				<input type="hidden" name="name" value="<%= page.name %>">
-				<input type="text" class="thing-input input-switch" data-id="<%= page.id %>" name="desc" placeholder="New thing." autocomplete="off" data-number="0">
-				<button class="thing-button" data-id="<%= page.id %>-thing">Create</button>
+			<!--<form action='<%#= url("/page/thing") %>' method="POST" enctype="multipart/form-data" onsubmit="return false;" id="<%#= page.id %>-thing-form" class="thing-form form-switch">
+				<input type="hidden" name="type" id="<%#= page.id %>-hidden" value="h1">
+				<input type="hidden" name="name" value="<%#= page.name %>">
+				<input type="text" class="thing-input input-switch" data-id="<%#= page.id %>" name="desc" placeholder="New thing." autocomplete="off" data-number="0">
+				<button class="thing-button" data-id="<%#= page.id %>-thing">Create</button>-->
 				<!--<h1 class="thing-example" id="<%= page.id %>-p">Header</h1>-->
 			</form>
 		</section>

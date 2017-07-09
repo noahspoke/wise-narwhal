@@ -1,0 +1,21 @@
+$cool-back: #DCD5D3;
+
+.action {
+	display: inline-block;
+	width: 120px;
+	height: 120px;
+	/*background: darken(#fff, 8%);*/
+	background: $cool-back;
+	overflow: hidden;
+	position: relative;
+ 	transition: all 0.3s ease-out;
+ 	text-decoration: none;
+
+ 	h3 {
+
+ 	}
+}
+
+.text {
+
+}

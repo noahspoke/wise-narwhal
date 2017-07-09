@@ -10,11 +10,12 @@ gem 'rake'
 gem 'bcrypt'
 gem 'aws-sdk'
 gem 'dotenv'
+gem 'haml'
 
 #Tells your Mac to use sqlite locally during development
 group :development do
  gem 'sqlite3'
- gem "tux"
+ gem 'tux'
 end
 
 #Tells heroku to use postgreSQL in production/live

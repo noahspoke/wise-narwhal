@@ -1,15 +1,17 @@
+var $ = require('jquery');
+
 $(function() {
 	$(".page-heading").click(function() {
 		var id = $(this).data("id");
 		var childI = $(this).find("i");
 
-		if (childI.hasClass("fa-caret-down")) {
-			childI.removeClass("fa-caret-down");
-			childI.addClass("fa-caret-up");
+		if (childI.hasClass("fa-plus")) {
+			childI.removeClass("fa-plus");
+			childI.addClass("fa-minus");
 		}
 		else {
-			childI.removeClass("fa-caret-up");
-			childI.addClass("fa-caret-down");
+			childI.removeClass("fa-minus");
+			childI.addClass("fa-plus");
 		}
 
 		$("#"+id+"-content").slideToggle(100);
