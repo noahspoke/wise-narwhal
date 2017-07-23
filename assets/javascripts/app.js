@@ -1,4 +1,5 @@
 var $ = require('jquery');
+var Slideout = require('slideout');
 
 $(function() {
 	$(".page-heading").click(function() {
@@ -98,4 +99,16 @@ $(function() {
 	$("#new-thing").click(function() {
 		$("#form_thing").toggle();
 	});
+
+
+	var slide = new Slideout({
+	    'panel': document.getElementById('panel'),
+	    'menu': document.getElementById('menu'),
+	    'padding': 256,
+	    'tolerance': 70
+  	});
+
+  	document.querySelector('.toggle-button').addEventListener('click', function() {
+        slide.toggle();
+      });
 });
