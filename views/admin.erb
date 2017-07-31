@@ -3,17 +3,24 @@
 	<h3>These are your <p style="display:inline; font-family: 'Lato', sans-serif; font-weight: 900;">pages.</p> Here is where you edit and add.</h3>
 
 	<% @pages.each do |page| %>
-		<h1 class="page-heading" data-id="<%= page.id %>"><%= page.name %> <i class="fa fa-plus" aria-hidden="true"></i></h1>
+		<h1 class="page-heading" id="page-<%= page.id %>" data-id="<%= page.id %>"><%= page.name %> <i class="fa fa-plus" aria-hidden="true"></i></h1>
 
-		<section class="new-content page-content" id="<%= page.id %>-content">
+		<section class="new-content page-content" id="content-<%= page.id %>">
 
 			<div class="action-wrapper">
-				<a class="action">
-					
+				<a class="admin-action" href="<%= url("/page/#{page.id}/edit") %>">
+					<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+					Edit Page
 				</a>
 
-				<a class="action">
-					
+				<a class="admin-action admin-swal-new">
+					<i class="fa fa-plus" aria-hidden="true"></i>
+					New Item
+				</a>
+
+				<a class="admin-action admin-swal-delete" data-id="<%= page.id %>">
+					<i class="fa fa-close" aria-hidden="true" data-id="<%= page.id %>"></i>
+					Delete Page
 				</a>
 			</div>
 		
@@ -37,17 +44,21 @@
 		</section>
 	<% end %>
 
-	<h1 class="page-heading" data-id="-1">Other stuff. <i class="fa fa-caret-down" aria-hidden="true"></i></h1>
+	<h1 class="page-heading" data-id="-1">New Page <i class="fa fa-caret-down" aria-hidden="true"></i></h1>
 
-	<section class="new-content page-content" id="-1-content">
+	<section class="new-content form-content">
 		<form action='<%= url("/page") %>' method="POST" enctype="multipart/form-data" onsubmit="return false;" id="page-form">
-			<input type="text" name="name" placeholder="page name" autocomplete="off">
+			<input type="text" name="name" placeholder="Page Name" autocomplete="off">
 			<button class="thing-button" data-id="page">Create</button>
 		</form>
+	</section>
 
+	<h1 class="page-heading" data-id="-1">New User <i class="fa fa-caret-down" aria-hidden="true"></i></h1>
+
+	<section class="new-content form-content">
 		<form action='<%= url("/user") %>' method="POST" enctype="multipart/form-data" onsubmit="return false;" id="user-form">
-			<input type="text" name="name" placeholder="name" autocomplete="off">
-			<input type="password" name="password" placeholder="password">
+			<input type="text" name="name" placeholder="Name" autocomplete="off">
+			<input type="password" name="password" placeholder="Password">
 			<button class="thing-button" data-id="user">Create</button>
 		</form>
 	</section>

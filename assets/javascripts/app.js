@@ -1,5 +1,6 @@
 var $ = require('jquery');
 var Slideout = require('slideout');
+var swal = require('sweetalert');
 
 $(function() {
 	$(".page-heading").click(function() {
@@ -9,13 +10,25 @@ $(function() {
 		if (childI.hasClass("fa-plus")) {
 			childI.removeClass("fa-plus");
 			childI.addClass("fa-minus");
+			$("#content-"+id).slideToggle(100);
 		}
-		else {
+		else if (childI.hasClass("fa-minus")) {
 			childI.removeClass("fa-minus");
 			childI.addClass("fa-plus");
+			$("#content-"+id).slideToggle(100);
+		}
+		else if (childI.hasClass("fa-caret-down")) {
+			childI.removeClass("fa-caret-down");
+			childI.addClass("fa-caret-up");
+			//other stuff toggle
+		}
+		else if (childI.hasClass("fa-caret-up")) {
+			childI.removeClass("fa-caret-up");
+			childI.addClass("fa-caret-down");
+
 		}
 
-		$("#"+id+"-content").slideToggle(100);
+		
 	});
 
 	$(".input-switch").focus(function() {
@@ -100,6 +113,70 @@ $(function() {
 		$("#form_thing").toggle();
 	});
 
+	$('.admin-swal-new').click(function() {
+		swal({
+			title: 'Add a new item!',
+			text: '<select id="type-select"><option>Header</option><option>Paragraph</option></select>',
+			showConfirmButton: true,
+			html: true
+		},
+		function() {
+			swal({
+				showConfirmButton: true,
+				html: true,
+				confirmButtonText: 'Save!'
+			},
+			function() {
+
+			});
+		});
+	});
+
+	$('.admin-swal-delete').click(function() {
+		var clicked_obj = $(this);
+
+		swal({
+			title: 'Are you sure?',
+			text: 'By clicking confirm, this will delete your page and everything on it.',
+			showCancelButton: true,
+			showConfirmButton: true,
+			closeOnConfirm: false,
+			confirmButtonText: 'Delete Page',
+			type: 'warning'
+		},
+		function() {
+			var url = '/page/' + clicked_obj.data('id') + '/delete';
+
+			$.ajax({
+				url: url,
+				method: 'DELETE',
+				success: function() {
+					console.log('success! Page deleted!');
+				},
+				error: function() {
+					console.log('Oh shit Noah, the page would not delete.');
+				}
+			})
+			.done(function(data) {
+				$('#page-'+clicked_obj.data('id')).remove();
+				$('#content-'+clicked_obj.data('id')).remove();
+
+				swal({
+					title: 'Deleted :(',
+					showConfirmButton: true,
+					type: 'success'
+				});
+			})
+			.fail(function(data) {
+				swal({
+					title: 'Oh no...',
+					text: 'We couldn\'t delete your page.',
+					showConfirmButton: true,
+
+				});
+			});
+		});
+	});
 
 	var slide = new Slideout({
 	    'panel': document.getElementById('panel'),

@@ -56,13 +56,16 @@ get '/admin' do
 end
 
 post '/admin' do
-	user = User.find_by(name: params[:name])
-	if user.authenticate(params[:password])
-		session[:user_id] = user.id
-		redirect '/dashboard'
+	if user = User.find_by(name: params[:name])
+		if user.authenticate(params[:password])
+			session[:user_id] = user.id
+			redirect '/dashboard'
+		else
+			redirect '/admin'
+		end
 	else
 		redirect '/admin'
-	end
+	end 
 end
 
 get '/dashboard' do
@@ -83,9 +86,23 @@ post '/page' do
 	body ''
 end
 
-post '/page/thing' do
-	thing = Thing.create(name: params[:name], group_name: params[:type], description: params[:desc])
+post '/page/:page_id/thing' do
+	thing = Thing.create(name: params[:name], group_name: params[:type], description: params[:desc], page_id: params[:page_id])
 	status 200
+	body ''
+end
+
+get '/page/:page_id/edit' do
+	@page = Page.find(params[:page_id])
+	@things = Thing.where('page_id = ?', @page.id)
+
+	erb :edit
+end
+
+delete  '/page/:page_id/delete' do
+	page = Page.find(params[:page_id])
+	page.destroy
+	# No status change, purely for testing
 	body ''
 end
 
@@ -95,7 +112,7 @@ post '/user' do
 	body ''
 end
 
-post '/thing/:thing_id' do
+post '/page/:page_id/thing/:thing_id' do
 	thing = Thing.find(params[:thing_id])
 	thing.update_attribute :description, params[:description] if params[:description]
 	status 200

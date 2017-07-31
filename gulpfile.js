@@ -21,7 +21,7 @@ gulp.task('jsFix', function() {
 });
 
 gulp.task('cssFix', function() {
-	gulp.src('./assets/stylesheets/sass/*.scss')
+	gulp.src(['./assets/stylesheets/sass/*.scss', './node_modules/sweetalert/dist/sweetalert.css'])
 		.pipe(sass().on('error', sass.logError))
 		.pipe(concatCss('build.css'))
 		.pipe(cleanCss())
