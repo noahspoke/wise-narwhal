@@ -1,3 +1,16 @@
+<h2>You are editing <h1><%= @page.name %></h1></h2>
+
 <% @things.each do |thing| %>
 	<% haml :thing, :thing => thing %>
 <% end %>
+
+<div class="thing-radio">
+	<div class="radio">Header</div>
+	<div class="radio">Price</div>
+</div> 
+
+<% thing_url = "/page/#{@page.id}/thing" %>
+<form method="POST" action="<%= url(thing_url) %>">
+
+
+</form>

@@ -89,7 +89,6 @@ end
 post '/page/:page_id/thing' do
 	thing = Thing.create(name: params[:name], group_name: params[:type], description: params[:desc], page_id: params[:page_id])
 	status 200
-	body ''
 end
 
 get '/page/:page_id/edit' do

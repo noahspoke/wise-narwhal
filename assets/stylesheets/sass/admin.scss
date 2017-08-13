@@ -94,3 +94,14 @@ $material-border: rgba(0,0,0,0.4);
 	}
 
 }
+
+.thing-radio {
+	display: block;
+
+	.radio {
+		display: inline-block;
+		height: 80px;
+		line-height: 80px;
+		border-right: 1px solid $off-black;
+	}
+}
