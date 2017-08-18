@@ -1,16 +1,15 @@
-<h2>You are editing <h1><%= @page.name %></h1></h2>
+<button class="add-item-swal">Add New Item <i class="fa fa-plus" aria-hidden="true"></i></button>
 
-<% @things.each do |thing| %>
-	<% haml :thing, :thing => thing %>
-<% end %>
+<section class="admin">
+	<h2>You are editing <h1><%= @page.name %></h1></h2>
 
-<div class="thing-radio">
-	<div class="radio">Header</div>
-	<div class="radio">Price</div>
-</div> 
+	<% @things.each do |thing| %>
+		<% haml :thing, :thing => thing %>
+	<% end %>
 
-<% thing_url = "/page/#{@page.id}/thing" %>
-<form method="POST" action="<%= url(thing_url) %>">
+	<% thing_url = "/page/#{@page.id}/thing" %>
+	<form method="POST" action="<%= url(thing_url) %>">
 
 
-</form>
+	</form>
+</section>

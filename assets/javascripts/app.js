@@ -178,6 +178,21 @@ $(function() {
 		});
 	});
 
+	var segmented = "<label class='segment'><input type='radio' name='type'> Header</label>" + 
+					"<label class='segment'><input type='radio' name='type'> Paragraph</label>" +
+					"<label class='segment'><input type='radio' name='type'> Price</label>" +
+					"<label class='segment'><input type='radio' name='type'> Showtime</label>";
+
+	$('.add-item-swal').click(function() {
+		swal({
+			title: 'Select a type.',
+			text: segmented,
+			html: true,
+			confirmButtonColor: '',
+			confirmButtonText: 'Continue'
+		});
+	});
+
 	var slide = new Slideout({
 	    'panel': document.getElementById('panel'),
 	    'menu': document.getElementById('menu'),

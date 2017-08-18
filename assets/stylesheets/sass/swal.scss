@@ -1,0 +1,39 @@
+@import 'globals';
+@import 'admin';
+
+.sweet-alert {
+
+	h2 {
+		font-family: $main-font;
+		font-weight: 400 !important;
+	}
+
+
+	.sa-button-container {
+		button {
+			display: block;
+		  	padding: 12px 24px;
+		  	margin: 16px auto 16px auto;
+		  	/*width: 100px;*/
+		  	max-width: 300px;
+		  	vertical-align: middle;
+		  	color: #fff;
+		  	font-size: 16px;
+		  	font-family: $second-font;
+		  	line-height: 20px;
+		  	-webkit-font-smoothing: antialiased;
+		  	text-align: center;
+		  	letter-spacing: 1px;
+		  	background-color: $material-black;
+		  	border: 0;
+		  	border-bottom: 2px solid $material-border;
+		  	cursor: pointer;
+		  	transition: all 0.15s ease;
+
+		  	.fa {
+		  		padding-left: 4px;
+		  		font-size: 12px;
+		  	}
+		}
+	}	
+}
